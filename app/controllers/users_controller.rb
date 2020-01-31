@@ -32,8 +32,8 @@ class UsersController < ApplicationController
   def show
     @articles = if liked_request?
                   Article.where(id: @user.likes.select(:article_id))
-                         .includes(user: :profile_image_attachment)
-                         .order(created_at: :desc, id: :desc).page(params[:page])
+                        .includes(user: :profile_image_attachment)
+                        .order(created_at: :desc, id: :desc).page(params[:page])
                 else
                   @user.articles.order(created_at: :desc, id: :desc).page(params[:page])
                 end
